@@ -1,0 +1,35 @@
+{
+  "name": "postcss-var-map",
+  "version": "0.0.1",
+  "description": "PostCSS plugin to generate a JS map with custom css props",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "js"
+  ],
+  "author": "Wesley Luyten <hi@wesleyluyten.com>",
+  "license": "MIT",
+  "repository": "luwes/postcss-var-map",
+  "bugs": {
+    "url": "https://github.com/luwes/postcss-var-map/issues"
+  },
+  "homepage": "https://github.com/luwes/postcss-var-map",
+  "dependencies": {
+    "postcss": "^6.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-postcss": "^2.0.2",
+    "jest": "^20.0.0"
+  },
+  "scripts": {
+    "test": "jest && eslint *.js"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss/es5",
+    "env": {
+      "jest": true
+    }
+  }
+}
