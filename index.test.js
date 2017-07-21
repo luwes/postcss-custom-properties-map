@@ -12,13 +12,13 @@ var plugin = require('./');
 
 it('produces a correct CSS var map', () => {
 
-    const opts = {
+    var opts = {
         file: 'test/css-var-map.js',
         prefix: 'module.exports = ',
         suffix: ''
     };
 
-    const input = `
+    var input = `
         :root {
           --tint: springgreen;
         }
@@ -37,7 +37,7 @@ it('produces a correct CSS var map', () => {
         }
     `;
 
-    const output = {
+    var output = {
         ':root': [['--tint', 'springgreen']],
         'body': [['background-color', 'var(--tint)']],
         '.button': [
