@@ -21,7 +21,8 @@ window.cssVarMap = {".foo":[["color","var(--primary-color)","important"]]}
 ```js
 postcss([ require('postcss-var-map')({
     file: 'css-var-map.js',
-    globalVarName: 'cssVarMap'
+    prefix: 'window.cssVarMap = ',
+    suffix: ';'
 }) ])
 ```
 
