@@ -9,7 +9,8 @@ module.exports = postcss.plugin('postcss-var-map', function (opts) {
         let varRules = {};
         root.walkRules(function (rule) {
             rule.walkDecls(function (decl) {
-                if (decl.value.includes('var(--')) {
+                // Add both CSS var setters and getters
+                if (/^--/.test(decl.prop) || decl.value.includes('var(--')) {
                     const key = cleanCss(rule.selector);
                     if (!varRules[key]) {
                         varRules[key] = [];
