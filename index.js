@@ -3,8 +3,7 @@ const postcss = require('postcss');
 
 const cleanCss = (css) => css.replace(/\s+/g, ' ').replace(/'/g, '"').trim();
 
-module.exports = postcss.plugin('postcss-var-map', function (opts) {
-    opts = opts || {};
+function plugin({ file, prefix = '', suffix = '' }) {
     return function (root) {
         let varRules = {};
         root.walkRules(function (rule) {
@@ -25,15 +24,15 @@ module.exports = postcss.plugin('postcss-var-map', function (opts) {
         });
 
         let data = JSON.stringify(varRules);
-        if (opts.globalVarName) {
-            data = `window.${opts.globalVarName} = ${data}`;
-        }
+        data = `${prefix}${data}${suffix}`;
 
         return new Promise(function (resolve, reject) {
-            fs.writeFile(opts.file, data, function (err) {
+            fs.writeFile(file, data, function (err) {
                 if (err) return reject(err);
                 return resolve();
             });
         });
     };
-});
+}
+
+module.exports = postcss.plugin('postcss-var-map', plugin);
