@@ -32,7 +32,8 @@ Provide a fallback for IE and early Edge browsers for changing custom CSS proper
 
 ```js
     function setCssVar(prop, value, el) {
-        if (Support.cssVar) {
+        var cssVarSupport = window.CSS && CSS.supports && CSS.supports('--a', 0);
+        if (cssVarSupport) {
             el.style.setProperty(prop, value);
         }
         else {
