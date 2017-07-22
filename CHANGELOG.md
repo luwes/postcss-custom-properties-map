@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.0.3 - 2017-07-22
+### Changed
+- Use a 2D array instead of map object to keep order, might need to order the rules on CSS specificity in the future
+
 ## 0.0.2 - 2017-07-21
 ### Added
 - Include both the CSS var setters and getters to the outputted map

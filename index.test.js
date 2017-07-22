@@ -28,14 +28,14 @@ it('produces a correct CSS var map', () => {
         }
     `;
 
-    const output = {
-        ':root': [['--tint', 'springgreen']],
-        'body': [['background-color', 'var(--tint)']],
-        '.button': [
+    const output = [
+        [':root', [['--tint', 'springgreen']]],
+        ['body', [['background-color', 'var(--tint)']]],
+        ['.button', [
             ['--tint', 'rebeccapurple'],
             ['color', 'var(--tint, purple)']
-        ]
-    };
+        ]]
+    ];
 
     return postcss([ plugin(opts) ]).process(input)
         .then(result => {

@@ -1,1 +1,1 @@
-module.exports = {":root":[["--tint","springgreen"]],"body":[["background-color","var(--tint)"]],".button":[["--tint","rebeccapurple"],["color","var(--tint, purple)"]]}
+module.exports = [[":root",[["--tint","springgreen"]]],["body",[["background-color","var(--tint)"]]],[".button",[["--tint","rebeccapurple"],["color","var(--tint, purple)"]]]]

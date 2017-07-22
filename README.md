@@ -13,7 +13,7 @@
 ```
 
 ```js
-window.cssVarMap = {".foo":[["color","var(--primary-color)","important"]]}
+window.cssVarMap = [".foo", [["color","var(--primary-color)","important"]]];
 ```
 
 ## Usage

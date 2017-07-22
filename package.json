@@ -1,6 +1,6 @@
 {
   "name": "postcss-var-map",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "PostCSS plugin to generate a JS map with custom css props",
   "keywords": [
     "postcss",
@@ -29,7 +29,8 @@
   "eslintConfig": {
     "extends": "eslint-config-postcss/es5",
     "env": {
-      "jest": true
+      "jest": true,
+      "es6": true
     }
   }
 }

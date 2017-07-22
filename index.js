@@ -3,27 +3,26 @@ const postcss = require('postcss');
 
 const cleanCss = (css) => css.replace(/\s+/g, ' ').replace(/'/g, '"').trim();
 
-function plugin({ file, prefix = '', suffix = '' }) {
+function PostcssVarMap({ file, prefix = '', suffix = '' }) {
     return function (root) {
-        let varRules = {};
+        let varRules = new Map();
         root.walkRules(function (rule) {
             rule.walkDecls(function (decl) {
                 // Add both CSS var setters and getters
                 if (/^--/.test(decl.prop) || decl.value.includes('var(--')) {
-                    const key = cleanCss(rule.selector);
-                    if (!varRules[key]) {
-                        varRules[key] = [];
-                    }
                     const varDecl = [ decl.prop, decl.value ];
                     if (decl.important) {
                         varDecl.push('important');
                     }
-                    varRules[key].push(varDecl);
+                    const key = cleanCss(rule.selector);
+                    varRules.set(key,
+                        (varRules.get(key) || []).concat([varDecl])
+                    );
                 }
             });
         });
 
-        let data = JSON.stringify(varRules);
+        let data = JSON.stringify(Array.from(varRules));
         data = `${prefix}${data}${suffix}`;
 
         return new Promise(function (resolve, reject) {
@@ -35,4 +34,4 @@ function plugin({ file, prefix = '', suffix = '' }) {
     };
 }
 
-module.exports = postcss.plugin('postcss-var-map', plugin);
+module.exports = postcss.plugin('postcss-var-map', PostcssVarMap);
