@@ -12,6 +12,7 @@ it('produces a correct CSS var map', () => {
     const input = `
         :root {
           --tint: springgreen;
+          --hint: lemonchiffon;
         }
 
         body {
@@ -19,23 +20,42 @@ it('produces a correct CSS var map', () => {
           background-color: var(--tint);
         }
 
+        .button {
+            color: gray;
+        }
+
         @media (min-width: 415px) {
           .button {
             --tint: rebeccapurple;
             padding: 5px;
-            color: var(--tint, purple);
+            color: var(--tint, var(--hint, pink));
+            border-color: var(--hint);
           }
         }
     `;
 
-    const output = [
-        [':root', [['--tint', 'springgreen']]],
-        ['body', [['background-color', 'var(--tint)']]],
-        ['.button', [
-            ['--tint', 'rebeccapurple'],
-            ['color', 'var(--tint, purple)']
-        ]]
-    ];
+    const output = {
+        getVars: {
+            '--tint': {
+                'body': {
+                    0: [['background-color', 'var(--tint)']]
+                },
+                '.button': {
+                    1: [
+                        ['color', 'var(--tint, var(--hint, pink))']
+                    ]
+                }
+            },
+            '--hint': {
+                '.button': {
+                    1: [
+                        ['color', 'var(--tint, var(--hint, pink))'],
+                        ['border-color', 'var(--hint)']
+                    ]
+                }
+            }
+        }
+    };
 
     return postcss([ plugin(opts) ]).process(input)
         .then(result => {
@@ -44,3 +64,13 @@ it('produces a correct CSS var map', () => {
             expect(result.warnings().length).toBe(0);
         });
 });
+
+// rules: [
+//     [':root', [['--tint', 'springgreen'], ['--hint', 'lemonchiffon']]],
+//     ['body', [['background-color', 'var(--tint)']]],
+//     ['.button', [
+//         ['--tint', 'rebeccapurple'],
+//         ['color', 'var(--tint, var(--hint, pink))'],
+//         ['border-color', 'var(--hint)']
+//     ]]
+// ]

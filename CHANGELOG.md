@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.1.0 - 2017-07-24
+### Changed
+- Restructure map to have the CSS vars first then selectors with relative index followed by the CSS declarations in an array. This way the lookup can be much more performant.
+
 ## 0.0.3 - 2017-07-22
 ### Changed
 - Use a 2D array instead of map object to keep order, might need to order the rules on CSS specificity in the future
