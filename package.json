@@ -1,6 +1,6 @@
 {
   "name": "postcss-var-map",
-  "version": "0.0.3",
+  "version": "0.2.0",
   "description": "PostCSS plugin to generate a JS map with custom css props",
   "keywords": [
     "postcss",

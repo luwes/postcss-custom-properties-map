@@ -23,9 +23,11 @@ var count = (function makeCount(countMap) {
 }());
 
 function PostcssVarMap({ file, prefix = '', suffix = '' }) {
+    const isSetVar = /^--/;
     const matchGetVar = /--[^\s,)]+/g;
 
     return (root) => {
+        let setVars = [];
         let getVars = {};
 
         root.walkRules((rule) => {
@@ -33,14 +35,24 @@ function PostcssVarMap({ file, prefix = '', suffix = '' }) {
             const selectorCount = count(selector);
 
             rule.walkDecls(({ prop, value, important }) => {
+                const varDecl = [ prop, value ];
+                if (important) {
+                    varDecl.push('important');
+                }
+
+                if (isSetVar.test(prop)) {
+                    setVars.push([
+                        prop,
+                        value,
+                        important ? 'important' : 0,
+                        selector,
+                        selectorCount
+                    ]);
+                }
+
                 const varMatches = getMatches(value, matchGetVar);
                 if (varMatches.length) {
                     varMatches.forEach((getVar) => {
-                        const varDecl = [ prop, value ];
-                        if (important) {
-                            varDecl.push('important');
-                        }
-
                         if (!getVars[getVar]) {
                             getVars[getVar] = {};
                         }
@@ -56,9 +68,10 @@ function PostcssVarMap({ file, prefix = '', suffix = '' }) {
             });
         });
 
-        let data = {};
-        data.getVars = getVars;
-        data = JSON.stringify(data);
+        let data = JSON.stringify({
+            setVars,
+            getVars
+        });
         data = `${prefix}${data}${suffix}`;
 
         return new Promise((resolve, reject) => {

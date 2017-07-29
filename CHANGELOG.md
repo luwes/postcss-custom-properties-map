@@ -1,6 +1,11 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.2.0 - 2017-07-29
+### Added
+- `setVars` property to store the defining of the custom CSS properties.
+The selectors and selector indexes are passed along so the cascade can be taken in account 
+
 ## 0.1.0 - 2017-07-24
 ### Changed
 - Restructure map to have the CSS vars first then selectors with relative index followed by the CSS declarations in an array. This way the lookup can be much more performant.

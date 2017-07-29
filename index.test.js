@@ -11,7 +11,7 @@ it('produces a correct CSS var map', () => {
 
     const input = `
         :root {
-          --tint: springgreen;
+          --tint: springgreen !important;
           --hint: lemonchiffon;
         }
 
@@ -54,7 +54,19 @@ it('produces a correct CSS var map', () => {
                     ]
                 }
             }
-        }
+        },
+        setVars: [
+            [
+                '--tint', 'springgreen', 'important',
+                ':root', 0
+            ], [
+                '--hint', 'lemonchiffon', 0,
+                ':root', 0
+            ], [
+                '--tint', 'rebeccapurple', 0,
+                '.button', 1
+            ]
+        ]
     };
 
     return postcss([ plugin(opts) ]).process(input)
@@ -64,13 +76,3 @@ it('produces a correct CSS var map', () => {
             expect(result.warnings().length).toBe(0);
         });
 });
-
-// rules: [
-//     [':root', [['--tint', 'springgreen'], ['--hint', 'lemonchiffon']]],
-//     ['body', [['background-color', 'var(--tint)']]],
-//     ['.button', [
-//         ['--tint', 'rebeccapurple'],
-//         ['color', 'var(--tint, var(--hint, pink))'],
-//         ['border-color', 'var(--hint)']
-//     ]]
-// ]
