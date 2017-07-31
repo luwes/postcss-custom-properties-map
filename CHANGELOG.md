@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.2.1 - 2017-07-31
+### Added
+- `remove` option to remove declarations with CSS vars to test a shim in a browser that does support custom CSS properties
+
 ## 0.2.0 - 2017-07-29
 ### Added
 - `setVars` property to store the defining of the custom CSS properties.

@@ -22,7 +22,7 @@ var count = (function makeCount(countMap) {
     };
 }());
 
-function PostcssVarMap({ file, prefix = '', suffix = '' }) {
+function PostcssVarMap({ file, prefix = '', suffix = '', remove = false }) {
     const isSetVar = /^--/;
     const matchGetVar = /--[^\s,)]+/g;
 
@@ -34,7 +34,8 @@ function PostcssVarMap({ file, prefix = '', suffix = '' }) {
             const selector = cleanCss(rule.selector);
             const selectorCount = count(selector);
 
-            rule.walkDecls(({ prop, value, important }) => {
+            rule.walkDecls((decl) => {
+                const { prop, value, important } = decl;
                 const varDecl = [ prop, value ];
                 if (important) {
                     varDecl.push('important');
@@ -48,6 +49,10 @@ function PostcssVarMap({ file, prefix = '', suffix = '' }) {
                         selector,
                         selectorCount
                     ]);
+
+                    if (remove) {
+                        decl.remove();
+                    }
                 }
 
                 const varMatches = getMatches(value, matchGetVar);
@@ -64,6 +69,10 @@ function PostcssVarMap({ file, prefix = '', suffix = '' }) {
                         }
                         getVars[getVar][selector][selectorCount].push(varDecl);
                     });
+
+                    if (remove) {
+                        decl.remove();
+                    }
                 }
             });
         });
