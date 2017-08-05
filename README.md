@@ -29,6 +29,11 @@ cssVarShim({
 - Sets CSS vars via `element.style.setProperty()`
 - Adds fallback for HTML inline CSS vars
 
+## TODO
+
+- Get the CSS var value via `window.getComputedStyle()`
+- Cache found CSS rules with CSS vars
+
 ## Install
 
 ```bash
@@ -42,6 +47,34 @@ postcss([ require('postcss-var-shim')({
     mapFile: 'css-var-map.js',
     shimFile: 'css-var-shim.js'
 }) ])
+```
+
+## Add to HTML page
+
+Unfortunately IE conditional comments were removed since IE11. If you don't mind an extra request you can add the shim directly to the head.
+
+```html
+<head>
+    <link rel="stylesheet" href="app.css">
+    <script src="css-var-shim.js"></script>
+```
+
+Alternatively add the shim dynamically with something like this. This has the drawback that if the HTML page is rendered before the shim gets executed a [FOUC](https://en.wikipedia.org/wiki/Flash_of_unstyled_content) is seen.
+
+```html
+<head>
+    <link rel="stylesheet" href="app.css">
+    <script>
+        var cssVarSupport = window.CSS && CSS.supports && CSS.supports('--a', 0);
+        cssVarSupport = false;
+        if (!cssVarSupport) {
+            var cssVarScript = document.createElement('script');
+            cssVarScript.src = 'css-var-shim.js';
+            cssVarScript.async = false;
+            var firstScript = document.getElementsByTagName('script')[0];
+            firstScript.parentNode.insertBefore(cssVarScript, firstScript);
+        }
+    </script>
 ```
 
 ## API
@@ -71,5 +104,3 @@ A workaround that this shim provides is to define the custom CSS properties in a
 ```html
 <div style="--primary-color: #F44336; --primary-color-text: #FFF;" data-style="--primary-color: #F44336; --primary-color-text: #FFF;"></div>
 ```
-
-Also keep the orginal `style` attribute of course for modern browsers.
