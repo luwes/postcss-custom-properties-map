@@ -104,3 +104,12 @@ A workaround that this shim provides is to define the custom CSS properties in a
 ```html
 <div style="--primary-color: #F44336; --primary-color-text: #FFF;" data-style="--primary-color: #F44336; --primary-color-text: #FFF;"></div>
 ```
+
+## Support
+
+Adds support for CSS Custom Properties to:
+
+- Internet Explorer 11
+- Edge 12
+- Edge 13
+- Edge 14
