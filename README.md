@@ -13,13 +13,14 @@
 ```
 
 ```js
-{
+!function(t,e){"object"==typeof exports&&"undefined"!=typeof module?module.exports=e():"function"==typeof define&&define.amd?define(e):t.cssVarShim=e()}(this,function(){"use strict";function t(t,e){return(e=e||document).querySelectorAll(t)}function e(t){return u(t).reduce(function(t,n){return t.concat(n.cssRules?e(n.cssRules):n)},[])}function n(t,e,n){n=n||[];for(var r;null!==(r=e.exec(t));)n.push(r),e.lastIndex=r.index+r[0].length;return n}function r(t){return function(e){t.apply(this,e)}}function o(t,e){return e.reduce(function(t,e){return t?t[e]:void 0},t)}function c(t){return t=t||{},function(e){return t[e]=isNaN(t[e])?0:t[e]+1,t[e]}}function u(t){return[].slice.call(t)}function s(t){"loading"!==document.readyState?t():document.addEventListener("DOMContentLoaded",t)}return function(i){function a(t,e){var r=n(t,/--[^\s,)]+/g);return r.length&&r.forEach(function(n){var r=n[0],c=o(e,[r]);if(c){var u=new RegExp("var\\("+r+"(,[^)]+)?\\)");t=t.replace(u,c),t=a(t,e)}}),t}function f(e,n,r,o){var c=[document.documentElement];o&&":root"===o||(c=t(o)),u(c).forEach(function(t){t.style.setProperty(e,n,r||null,t)})}if(!(window.CSS&&CSS.supports&&CSS.supports("--a",0))){window.cssVarCache={};var l=CSSStyleDeclaration.prototype.setProperty;CSSStyleDeclaration.prototype.setProperty=function(n,s,f,d){if(/^--/.test(n)){window.cssVarCache[n]=s;var p=c();e(document.styleSheets).forEach(function(e){var c=e.selectorText,s=o(i.getVars,[n,c,p(c)]);s&&s.forEach(r(function(n,r,o){var s=a(r,window.cssVarCache);d?u(t(c)).forEach(function(t){d.contains(t)&&t.style.setProperty(n,s,o||null)}):e.style.setProperty(n,s,o||null)}))})}else l.call(this,n,s,f)},i.setVars.forEach(r(f)),s(function(){u(t('[data-style*="--"]')).forEach(function(t){var e=n(t.getAttribute("data-style"),/(--[^:]+)\s*:\s*([^;]+)/g);e.length&&e.forEach(r(function(e,n,r){t.style.setProperty(n,r,null,t)}))})})}}});
+cssVarShim({
   "--primary-color": { 
     ".foo": { 
       "0": [["color","var(--primary-color)","important"]]
     }
   }
-}
+});
 ```
 
 ## Features
