@@ -1,14 +1,18 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.3.0 - 2017-08-04
+### Added
+- Posibility to output the css var shim script with the css var map.
+
 ## 0.2.1 - 2017-07-31
 ### Added
-- `remove` option to remove declarations with CSS vars to test a shim in a browser that does support custom CSS properties
+- `remove` option to remove declarations with CSS vars to test a shim in a browser that does support custom CSS properties.
 
 ## 0.2.0 - 2017-07-29
 ### Added
 - `setVars` property to store the defining of the custom CSS properties.
-The selectors and selector indexes are passed along so the cascade can be taken in account 
+The selectors and selector indexes are passed along so the cascade can be taken in account.
 
 ## 0.1.0 - 2017-07-24
 ### Changed
@@ -16,16 +20,16 @@ The selectors and selector indexes are passed along so the cascade can be taken 
 
 ## 0.0.3 - 2017-07-22
 ### Changed
-- Use a 2D array instead of map object to keep order, might need to order the rules on CSS specificity in the future
+- Use a 2D array instead of map object to keep order, might need to order the rules on CSS specificity in the future.
 
 ## 0.0.2 - 2017-07-21
 ### Added
-- Include both the CSS var setters and getters to the outputted map
-- A test to confirm the outputted map file is correct
+- Include both the CSS var setters and getters to the outputted map.
+- A test to confirm the outputted map file is correct.
 
 ### Changed
-- Use a more flexible prefix and suffix option instead of a var name 
+- Use a more flexible prefix and suffix option instead of a var name.
 
 ## 0.0.1 - 2017-07-12
 ### Added
-- Basic functionality to generate a JS map from the custom CSS properties
+- Basic functionality to generate a JS map from the custom CSS properties.

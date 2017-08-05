@@ -1,37 +1,24 @@
 const fs = require('fs');
 const postcss = require('postcss');
+const utils = require('./utils');
 
-function cleanCss(css) {
-    return css.replace(/\s+/g, ' ').replace(/'/g, '"').trim();
-}
-
-function getMatches(str, regex, result = []) {
-    let match;
-    while ((match = regex.exec(str)) !== null) {
-        result.push(match[0]);
-        regex.lastIndex = match.index + match[0].length;
-    }
-    return result;
-}
-
-var count = (function makeCount(countMap) {
-    countMap = countMap || {};
-    return function (key) {
-        countMap[key] = isNaN(countMap[key]) ? 0 : countMap[key] + 1;
-        return countMap[key];
-    };
-}());
-
-function PostcssVarMap({ file, prefix = '', suffix = '', remove = false }) {
+function PostcssVarMap({
+    mapFile = 'css-var-map.json',
+    mapPrefix = '',
+    mapSuffix = '',
+    shimFile = 'css-var-shim.js',
+    remove = false
+}) {
     const isSetVar = /^--/;
     const matchGetVar = /--[^\s,)]+/g;
+    const count = utils.makeCount();
 
     return (root) => {
         let setVars = [];
         let getVars = {};
 
         root.walkRules((rule) => {
-            const selector = cleanCss(rule.selector);
+            const selector = utils.cleanCss(rule.selector);
             const selectorCount = count(selector);
 
             rule.walkDecls((decl) => {
@@ -55,7 +42,7 @@ function PostcssVarMap({ file, prefix = '', suffix = '', remove = false }) {
                     }
                 }
 
-                const varMatches = getMatches(value, matchGetVar);
+                const varMatches = utils.getMatches(value, matchGetVar);
                 if (varMatches.length) {
                     varMatches.forEach((getVar) => {
                         if (!getVars[getVar]) {
@@ -77,18 +64,32 @@ function PostcssVarMap({ file, prefix = '', suffix = '', remove = false }) {
             });
         });
 
-        let data = JSON.stringify({
+        let map = JSON.stringify({
             setVars,
             getVars
         });
-        data = `${prefix}${data}${suffix}`;
 
-        return new Promise((resolve, reject) => {
-            fs.writeFile(file, data, (err) => {
+        const mapPromise = new Promise((resolve, reject) => {
+            fs.writeFile(mapFile, `${mapPrefix}${map}${mapSuffix}`, (err) => {
                 if (err) return reject(err);
                 return resolve();
             });
         });
+
+        const shimPromise = new Promise((resolve, reject) => {
+            fs.readFile(require.resolve('css-var-shim'), (err, shim) => {
+                if (err) return reject(err);
+                // Get the contents of the shim and append the executing shim
+                // function with the css var map as an argument.
+                shim += `cssVarShim(${map});`;
+                return fs.writeFile(shimFile, shim, (writeErr) => {
+                    if (writeErr) return reject(writeErr);
+                    return resolve();
+                });
+            });
+        });
+
+        return Promise.all([mapPromise, shimPromise]);
     };
 }
 

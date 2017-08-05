@@ -4,9 +4,10 @@ var plugin = require('./');
 it('produces a correct CSS var map', () => {
 
     const opts = {
-        file: 'test/css-var-map.js',
-        prefix: 'module.exports = ',
-        suffix: ''
+        mapFile: 'test/css-var-map.js',
+        mapPrefix: 'module.exports = ',
+        mapSuffix: '',
+        shimFile: 'test/css-var-shim.js'
     };
 
     const input = `

@@ -1,6 +1,6 @@
 {
   "name": "postcss-var-map",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "PostCSS plugin to generate a JS map with custom css props",
   "keywords": [
     "postcss",
@@ -19,12 +19,18 @@
     "postcss": "^6.0.1"
   },
   "devDependencies": {
+    "chokidar-cli": "^1.2.0",
+    "css-var-shim": "^0.1.0",
     "eslint": "^3.19.0",
     "eslint-config-postcss": "^2.0.2",
-    "jest": "^20.0.0"
+    "jest": "^20.0.0",
+    "postcss-cli": "^4.1.0"
   },
   "scripts": {
-    "test": "jest && eslint *.js"
+    "test": "jest && eslint index*.js",
+    "build:css": "postcss -c example/postcss.config.js -o example/app.css example/src/css/*.css",
+    "build": "npm run build:css",
+    "watch": "chokidar './example/**/*.css' './node_modules/css-var-shim/index.js' -c 'npm run build'"
   },
   "eslintConfig": {
     "extends": "eslint-config-postcss/es5",
