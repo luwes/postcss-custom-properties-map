@@ -1,10 +1,10 @@
-# PostCSS Var Map [![Build Status][ci-img]][ci]
+# PostCSS Var Shim [![Build Status][ci-img]][ci]
 
-[PostCSS] plugin to generate a CSS var map (see below) and a CSS var shim script.
+[PostCSS] plugin to generate a CSS var shim.
 
 [PostCSS]: https://github.com/postcss/postcss
-[ci-img]:  https://travis-ci.org/luwes/postcss-var-map.svg
-[ci]:      https://travis-ci.org/luwes/postcss-var-map
+[ci-img]:  https://travis-ci.org/luwes/postcss-var-shim.svg
+[ci]:      https://travis-ci.org/luwes/postcss-var-shim
 
 ```css
 .foo {
@@ -31,13 +31,13 @@
 ## Install
 
 ```bash
-npm install --save-dev postcss-var-map
+npm install --save-dev postcss-var-shim
 ```
 
 ## Usage
 
 ```js
-postcss([ require('postcss-var-map')({
+postcss([ require('postcss-var-shim')({
     mapFile: 'css-var-map.js',
     shimFile: 'css-var-shim.js'
 }) ])

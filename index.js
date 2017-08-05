@@ -2,7 +2,7 @@ const fs = require('fs');
 const postcss = require('postcss');
 const utils = require('./utils');
 
-function PostcssVarMap({
+function PostcssVarShim({
     mapFile = 'css-var-map.json',
     mapPrefix = '',
     mapSuffix = '',
@@ -93,4 +93,4 @@ function PostcssVarMap({
     };
 }
 
-module.exports = postcss.plugin('postcss-var-map', PostcssVarMap);
+module.exports = postcss.plugin('postcss-var-shim', PostcssVarShim);

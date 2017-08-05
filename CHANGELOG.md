@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.4.0 - 2017-08-05
+### Added
+- Renamed plugin from `postcss-var-map` to `postcss-var-shim`.
+
 ## 0.3.0 - 2017-08-04
 ### Added
 - Posibility to output the css var shim script with the css var map.

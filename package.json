@@ -1,7 +1,7 @@
 {
-  "name": "postcss-var-map",
-  "version": "0.3.0",
-  "description": "PostCSS plugin to generate a JS map with custom css props",
+  "name": "postcss-var-shim",
+  "version": "0.4.0",
+  "description": "PostCSS plugin to generate a CSS var shim.",
   "keywords": [
     "postcss",
     "css",
@@ -10,11 +10,11 @@
   ],
   "author": "Wesley Luyten <hi@wesleyluyten.com>",
   "license": "MIT",
-  "repository": "luwes/postcss-var-map",
+  "repository": "luwes/postcss-var-shim",
   "bugs": {
-    "url": "https://github.com/luwes/postcss-var-map/issues"
+    "url": "https://github.com/luwes/postcss-var-shim/issues"
   },
-  "homepage": "https://github.com/luwes/postcss-var-map",
+  "homepage": "https://github.com/luwes/postcss-var-shim",
   "dependencies": {
     "postcss": "^6.0.1"
   },
