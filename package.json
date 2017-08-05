@@ -30,7 +30,7 @@
     "test": "jest && eslint index*.js",
     "build:css": "postcss -c example/postcss.config.js -o example/app.css example/src/css/*.css",
     "build": "npm run build:css",
-    "watch": "chokidar './example/**/*.css' './node_modules/css-var-shim/index.js' -c 'npm run build'"
+    "watch": "chokidar './example/src/**/*.css' './node_modules/css-var-shim/index.js' -c 'npm run build'"
   },
   "eslintConfig": {
     "extends": "eslint-config-postcss/es5",
