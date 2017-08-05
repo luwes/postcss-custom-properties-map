@@ -1,6 +1,6 @@
 # PostCSS Var Shim [![Build Status][ci-img]][ci]
 
-[PostCSS] plugin to generate a CSS var shim.
+[PostCSS] plugin to generate a custom CSS var shim
 
 [PostCSS]: https://github.com/postcss/postcss
 [ci-img]:  https://travis-ci.org/luwes/postcss-var-shim.svg
