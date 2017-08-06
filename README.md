@@ -23,6 +23,8 @@ cssVarShim({
 });
 ```
 
+The shim consists of 2 parts, the [css var shim script](https://github.com/luwes/css-var-shim) (**2.36kb** minified) and a css var map which is created from the stylesheets you pass in this plugin.
+
 ## Features
 
 - Sets CSS vars at runtime 
