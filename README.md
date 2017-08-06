@@ -30,10 +30,6 @@ cssVarShim({
 - Gets CSS vars via `element.style.getPropertyValue()`
 - Adds fallback for HTML inline CSS vars
 
-## TODO
-
-- Cache found CSS rules with CSS vars
-
 ## Install
 
 ```bash
