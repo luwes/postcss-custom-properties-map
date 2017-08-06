@@ -27,11 +27,11 @@ cssVarShim({
 
 - Sets CSS vars at runtime 
 - Sets CSS vars via `element.style.setProperty()`
+- Gets CSS vars via `element.style.getPropertyValue()`
 - Adds fallback for HTML inline CSS vars
 
 ## TODO
 
-- Get the CSS var value via `window.getComputedStyle()`
 - Cache found CSS rules with CSS vars
 
 ## Install

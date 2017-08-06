@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.0 - 2017-08-06
+### Added
+- Added support for `element.style.getPropertyValue()`
+
 ## 0.4.0 - 2017-08-05
 ### Added
 - Renamed plugin from `postcss-var-map` to `postcss-var-shim`.

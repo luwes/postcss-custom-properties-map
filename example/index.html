@@ -25,8 +25,8 @@
     <script>
 
         // Auxiliary method. Retrieves and sanitises the value of a custom property.
-        var getVariable = function(styles, propertyName) {
-          return String(styles.getPropertyValue(propertyName)).trim();
+        var getVariable = function(styles, propertyName, element) {
+          return String(styles.getPropertyValue(propertyName, element)).trim();
         };
 
         // Auxiliary method. Sets the value of a custom property at the document level.
@@ -45,8 +45,8 @@
           var styles = getComputedStyle(event.target);
 
           // Get the values for the button's colours...
-          var primary = getVariable(styles, '--primary-color');
-          var text = getVariable(styles, '--primary-color-text');
+          var primary = getVariable(styles, '--primary-color', event.target);
+          var text = getVariable(styles, '--primary-color-text', event.target);
           // ... and apply them to the document.
           setDocumentVariable('--primary-color', primary);
           setDocumentVariable('--primary-color-text', text);
