@@ -95,6 +95,22 @@ myelement.style.setProperty(propertyName, value, null, myelement);
 
 > Warning: the specific element is passed as a 4th argument. This does not follow the official API but was needed to make the shim work.
 
+### Get a custom CSS property value
+
+On the `:root` selector
+
+```js
+document.documentElement.style.getPropertyValue(propertyName);
+```
+
+On a specific element 
+
+```js
+myelement.style.getPropertyValue(propertyName, myelement);
+```
+
+> Warning: the specific element is passed as a 2nd argument. This does not follow the official API but was needed to make the shim work.
+
 ### Inline custom CSS properties
 
 Normally it is possible to set custom CSS properties in the HTML style attribute for specific elements. Because IE and early Edge does not support them they are discarded at parsing.  
