@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.3 - 2017-08-14
+### Changed
+- Update shim script to 0.2.2.
+
 ## 0.5.2 - 2017-08-14
 ### Added
 - Update shim script to handle quotes in selectors.

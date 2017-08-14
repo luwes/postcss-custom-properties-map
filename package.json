@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/luwes/postcss-var-shim",
   "dependencies": {
-    "css-var-shim": "^0.2.1",
+    "css-var-shim": "^0.2.2",
     "postcss": "^6.0.1"
   },
   "devDependencies": {
