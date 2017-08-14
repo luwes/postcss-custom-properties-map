@@ -3,7 +3,7 @@ const postcss = require('postcss');
 const utils = require('./utils');
 
 function PostcssVarShim({
-    mapFile = 'css-var-map.json',
+    mapFile = '',
     mapPrefix = '',
     mapSuffix = '',
     shimFile = 'css-var-shim.js',
@@ -70,10 +70,15 @@ function PostcssVarShim({
         });
 
         const mapPromise = new Promise((resolve, reject) => {
-            fs.writeFile(mapFile, `${mapPrefix}${map}${mapSuffix}`, (err) => {
-                if (err) return reject(err);
-                return resolve();
-            });
+            if (mapFile) {
+                const format = `${mapPrefix}${map}${mapSuffix}`;
+                fs.writeFile(mapFile, format, (err) => {
+                    if (err) return reject(err);
+                    return resolve();
+                });
+            } else {
+                resolve();
+            }
         });
 
         const shimPromise = new Promise((resolve, reject) => {
