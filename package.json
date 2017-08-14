@@ -16,11 +16,11 @@
   },
   "homepage": "https://github.com/luwes/postcss-var-shim",
   "dependencies": {
+    "css-var-shim": "^0.2.0",
     "postcss": "^6.0.1"
   },
   "devDependencies": {
     "chokidar-cli": "^1.2.0",
-    "css-var-shim": "^0.2.0",
     "eslint": "^3.19.0",
     "eslint-config-postcss": "^2.0.2",
     "jest": "^20.0.0",
