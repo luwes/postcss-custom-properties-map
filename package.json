@@ -1,6 +1,6 @@
 {
   "name": "postcss-var-shim",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "PostCSS plugin to generate a CSS var shim.",
   "keywords": [
     "postcss",
