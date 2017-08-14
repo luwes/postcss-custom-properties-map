@@ -616,9 +616,9 @@ cryptiles@2.x.x:
   dependencies:
     boom "2.x.x"
 
-css-var-shim@^0.2.0:
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/css-var-shim/-/css-var-shim-0.2.0.tgz#ad3eba7948f4087f5a734613ef8c091351da3be7"
+css-var-shim@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/css-var-shim/-/css-var-shim-0.2.1.tgz#9232a06bda87f2a7d43d33da39199694fe118e99"
 
 cssom@0.3.x, "cssom@>= 0.3.2 < 0.4.0":
   version "0.3.2"

@@ -25,6 +25,11 @@ it('produces a correct CSS var map', () => {
             color: gray;
         }
 
+        input[type='submit'],
+        input[type='submit'] {
+          color: var(--hint);
+        }
+
         @media (min-width: 415px) {
           .button {
             --tint: rebeccapurple;
@@ -52,6 +57,11 @@ it('produces a correct CSS var map', () => {
                     1: [
                         ['color', 'var(--tint, var(--hint, pink))'],
                         ['border-color', 'var(--hint)']
+                    ]
+                },
+                'input[type=\'submit\'], input[type=\'submit\']': {
+                    0: [
+                        ['color', 'var(--hint)']
                     ]
                 }
             }

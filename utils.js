@@ -1,6 +1,6 @@
 
 function cleanCss(css) {
-    return css.replace(/\s+/g, ' ').replace(/'/g, '"').trim();
+    return css.replace(/\s+/g, ' ').replace(/"/g, '\'').trim();
 }
 
 function getMatches(str, regex, result = []) {
