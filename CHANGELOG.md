@@ -1,9 +1,13 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.1 - 2017-08-14
+### Changed
+- Fixed npm dependency `css-var-shim`.
+
 ## 0.5.0 - 2017-08-06
 ### Added
-- Added support for `element.style.getPropertyValue()`
+- Added support for `element.style.getPropertyValue()`.
 
 ## 0.4.0 - 2017-08-05
 ### Added
