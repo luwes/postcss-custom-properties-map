@@ -4,7 +4,8 @@ module.exports = {
         // require('postcss-var-shim')({
         require('../index.js')({
             mapFile: 'example/css-var-map.json',
-            shimFile: 'example/css-var-shim.js'
+            shimFile: 'example/css-var-shim.js',
+            cssFileName: 'app.css'
         })
     ]
 };

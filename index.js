@@ -7,7 +7,8 @@ function PostcssVarShim({
     mapPrefix = '',
     mapSuffix = '',
     shimFile = 'css-var-shim.js',
-    remove = false
+    remove = false,
+    cssFileName = ''
 }) {
     const isSetVar = /^--/;
     const matchGetVar = /--[^\s,)]+/g;
@@ -86,7 +87,9 @@ function PostcssVarShim({
                 if (err) return reject(err);
                 // Get the contents of the shim and append the executing shim
                 // function with the css var map as an argument.
-                shim += `cssVarShim(${map});`;
+                shim += cssFileName ?
+                  `cssVarShim(${map}, '${cssFileName}');` :
+                  `cssVarShim(${map});`;
                 return fs.writeFile(shimFile, shim, (writeErr) => {
                     if (writeErr) return reject(writeErr);
                     return resolve();
