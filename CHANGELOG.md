@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.5 - 2017-08-30
+### Changed
+- Updated shim script to 0.2.3.
+
 ## 0.5.4 - 2017-08-14
 ### Changed
 - Made map file optional, most of the time it is not needed.
