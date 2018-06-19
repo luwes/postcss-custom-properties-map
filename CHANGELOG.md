@@ -1,6 +1,10 @@
 # Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 0.5.7 - 2018-06-18
+### Changed
+- Updated shim script to 0.2.5.
+
 ## 0.5.6 - 2017-08-30
 ### Changed
 - Updated shim script to 0.2.4.
