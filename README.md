@@ -64,7 +64,6 @@ Alternatively add the shim dynamically with something like this. This has the dr
     <link rel="stylesheet" href="app.css">
     <script>
         var cssVarSupport = window.CSS && CSS.supports && CSS.supports('--a', 0);
-        cssVarSupport = false;
         if (!cssVarSupport) {
             var cssVarScript = document.createElement('script');
             cssVarScript.src = 'css-var-shim.js';
